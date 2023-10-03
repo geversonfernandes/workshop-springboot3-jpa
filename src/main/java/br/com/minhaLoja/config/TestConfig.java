@@ -2,10 +2,12 @@ package br.com.minhaLoja.config;
 
 import br.com.minhaLoja.entities.Category;
 import br.com.minhaLoja.entities.Order;
+import br.com.minhaLoja.entities.Product;
 import br.com.minhaLoja.entities.User;
 import br.com.minhaLoja.entities.enums.OrderStatus;
 import br.com.minhaLoja.repositories.CategoryRepository;
 import br.com.minhaLoja.repositories.OrderRepository;
+import br.com.minhaLoja.repositories.ProductRepository;
 import br.com.minhaLoja.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,13 +30,23 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category cat1 = new Category(null, "Eletronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computers");
 
+        Product p1 = new Product(null, "The Lord of Rings", "testando produto 1", 90.5, "");
+        Product p2 = new Product(null, "SmartTV", "testando produto 2", 2190.5, "");
+        Product p3 = new Product(null, "Macbook Pro", "testando produto 3", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "testando produto 4", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "testando produto 5", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll((Arrays.asList(p1, p2, p3, p4, p5)));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "998989898", "123456");
         User u2 = new User(null, "Alex Green", "alex@gmail.com", "999991111", "123456");
